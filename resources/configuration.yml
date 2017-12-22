@@ -1,0 +1,8 @@
+mqtt:
+  host: localhost
+  port: 1883
+  base_topic:
+sensors:
+  - platform: ds18b20
+    name: ds18b20
+    temperature_topic: ds18b20/temperature
