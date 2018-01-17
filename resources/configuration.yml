@@ -1,8 +1,14 @@
 mqtt:
-  host: localhost
+  host: 192.168.1.211
   port: 1883
-  base_topic:
+  default_prefix: brno
 sensors:
   - platform: ds18b20
     name: ds18b20
     temperature_topic: ds18b20/temperature
+    update_interval: 10
+  - platform: HTU21
+    name: HTU21
+    temperature_topic: HTU21/temperature
+    humidity_topic: HTU21/humidity
+    update_interval: 10

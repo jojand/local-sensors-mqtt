@@ -1,8 +1,10 @@
 import logging
-from Ds18b20Mqtt import Ds18b20Mqtt
 
 
 class SensorBase:
+
+    def __init__(self, platform):
+        self._platform = platform
 
     def init(self):
         raise NotImplementedError()
@@ -14,13 +16,16 @@ class SensorBase:
         raise NotImplementedError()
 
     @staticmethod
-    def get_sensor(sensor_configuration):
+    def get_sensor(mqtt, sensor_config):
+        from Ds18b20Mqtt import Ds18b20Mqtt
+        from HTU21 import HTU21
         constructors = {
-            'ds18b20': lambda config: Ds18b20Mqtt(**config)
+            'ds18b20': lambda mqtt, config: Ds18b20Mqtt(mqtt=mqtt, **config),
+            'HTU21': lambda mqtt, config: HTU21(mqtt=mqtt, **config)
         }
         try:
-            platform = sensor_configuration['platform']
-        except :
+            platform = sensor_config['platform']
+        except:
             logging.error('Excepted element "platform" was not found for a sensor in configuration file.')
             return None
 
@@ -31,4 +36,4 @@ class SensorBase:
                 platform, list(constructor.keys())))
             return None
 
-        return constructor(sensor_configuration)
+        return constructor(mqtt, sensor_config)

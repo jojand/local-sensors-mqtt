@@ -13,5 +13,5 @@ setup(
         'local-sensors-mqtt.py',
     ],
     packages=['components'],
-    install_requires=['paho-mqtt', 'pyyaml']
+    install_requires=['pigpio', 'paho-mqtt', 'pyyaml', 'w1thermsensor']
 )
