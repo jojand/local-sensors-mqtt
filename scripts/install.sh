@@ -15,6 +15,15 @@ mkdir -p ${INSTALLATION_DESTINATION}
 virtualenv -p python ${INSTALLATION_DESTINATION}
 source ${INSTALLATION_DESTINATION}/bin/activate
 
+# install adafruit dht
+sudo apt-get update
+sudo apt-get install -y git build-essential python-dev python-smbus
+rm -rf Adafruit_Python_BMP
+git clone https://github.com/adafruit/Adafruit_Python_BMP.git
+cd Adafruit_Python_BMP
+python setup.py install
+cd -
+
 python setup.py install
 
 # config file

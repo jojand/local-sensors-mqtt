@@ -1,3 +1,5 @@
+
+
 from yaml import load, dump
 try:
     from yaml import CLoader as Loader, CDumper as Dumper
@@ -12,9 +14,11 @@ import thread
 import time
 import signal
 
+update_interval = 10
 sensors = []
 mqtt = None
 interrupted = False
+
 
 def init_logging(logging_path):
     logging.basicConfig(format='%(asctime)s %(module)s.%(funcName)s [%(levelname)s]: %(message)s',
@@ -42,10 +46,13 @@ def init_sensors(config_sensors, mqtt):
 
 
 def load_config(config_path):
+    global update_interval
     logging.info('Using config file: {}'.format(config_path))
     config_data = load(open(config_path).read())
+    config_general = get_config_item(config_data, 'general')
     config_mqtt = get_config_item(config_data, 'mqtt')
     config_sensors = get_config_item(config_data, 'sensors')
+    update_interval = config_general['update_interval']
     mqtt = Mqtt(**config_mqtt)
     # print config_sensors
     init_sensors(config_sensors, mqtt)

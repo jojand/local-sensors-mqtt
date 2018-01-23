@@ -19,9 +19,11 @@ class SensorBase:
     def get_sensor(mqtt, sensor_config):
         from Ds18b20Mqtt import Ds18b20Mqtt
         from HTU21 import HTU21
+        from Bmp180 import Bmp180
         constructors = {
             'ds18b20': lambda mqtt, config: Ds18b20Mqtt(mqtt=mqtt, **config),
-            'HTU21': lambda mqtt, config: HTU21(mqtt=mqtt, **config)
+            'HTU21': lambda mqtt, config: HTU21(mqtt=mqtt, **config),
+            'Bmp180': lambda mqtt, config: Bmp180(mqtt=mqtt, **config)
         }
         try:
             platform = sensor_config['platform']
