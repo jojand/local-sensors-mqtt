@@ -2,7 +2,7 @@ general:
   update_interval: 10
 
 mqtt:
-  host: 192.168.1.211
+  host: localhost
   port: 1883
   default_prefix: brno
 
@@ -19,10 +19,10 @@ sensors:
     bus_number: 1
     update_interval: 10
 
-#  - platform: Bmp180
-#    name: Bmp180
-#    temperature_topic: Bmp180/temperature
-#    abs_pressure_topic: Bmp180/abs_pressure
-#    rel_pressure_topic: Bmp180/rel_pressure
-#    altitude: 253
-#    update_interval: 10
+  - platform: Bmp180
+    name: Bmp180
+    temperature_topic: Bmp180/temperature
+    abs_pressure_topic: Bmp180/abs_pressure
+    rel_pressure_topic: Bmp180/rel_pressure
+    altitude: 253
+    update_interval: 10
