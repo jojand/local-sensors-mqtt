@@ -1,21 +1,19 @@
 import logging
-import time
 from SensorBase import SensorBase
 from w1thermsensor import W1ThermSensor
 
-#
-# for sensor in W1ThermSensor.get_available_sensors():
-#     print("Sensor %s has temperature %.2f" % (sensor.id, sensor.get_temperature()))
 
 class Ds18b20Mqtt(SensorBase):
 
     def __init__(self, **kwargs):
         self._name = kwargs['name']
         self._mqtt = kwargs['mqtt']
-        self._pin = kwargs['pin']
         self._temperature_topic = kwargs['temperature_topic']
         self._update_interval = kwargs['update_interval']
         self._temperature = None
+
+    def get_update_interval(self):
+        return self._update_interval
 
     def init(self):
         pass
@@ -26,7 +24,6 @@ class Ds18b20Mqtt(SensorBase):
         pass
 
     def publish(self):
-        self._publish(self._temperature_topic, self._temperature)
         formatted_value = '{0:0.2f}'.format(self._temperature)
         self._mqtt.publish(topic=self._temperature_topic, message=formatted_value)
         pass
