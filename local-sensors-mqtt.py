@@ -1,5 +1,3 @@
-
-
 from yaml import load, dump
 try:
     from yaml import CLoader as Loader, CDumper as Dumper
@@ -95,18 +93,13 @@ def main():
     logging.info('Using log file: {}'.format(args.logpath))
     load_config(args.config)
 
-    try:
-        thread.start_new_thread(measure_loop, ('Thread 1', 10))
-    except Exception as e:
-        logging.error('Unable to start thread: {}'.format(e))
-
     signal.signal(signal.SIGINT, interrupt_handler)
 
     while True:
         # logging.info('Main loop tick')
+        measure_loop('main', 60)
         if interrupted:
             break
-        time.sleep(1)
 
     logging.info('Exit')
 
