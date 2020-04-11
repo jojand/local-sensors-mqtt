@@ -1,8 +1,4 @@
-from yaml import load, dump
-try:
-    from yaml import CLoader as Loader, CDumper as Dumper
-except ImportError:
-    from yaml import Loader, Dumper
+import json
 
 from components.Mqtt import Mqtt
 
@@ -46,7 +42,8 @@ def init_sensors(config_sensors, mqtt):
 def load_config(config_path):
     global update_interval
     logging.info('Using config file: {}'.format(config_path))
-    config_data = load(open(config_path).read())
+    config_file = open(config_path)
+    config_data = json.loads(config_file.read())
     config_general = get_config_item(config_data, 'general')
     config_mqtt = get_config_item(config_data, 'mqtt')
     config_sensors = get_config_item(config_data, 'sensors')
