@@ -1,0 +1,40 @@
+{
+  "name": "Local sensors to MQTT",
+  "version": "0.1",
+  "slug": "local-sensors-mqtt",
+  "description": "Locally connected sensors to mqtt",
+  "arch": [
+    "armhf",
+    "armv7"
+  ],
+  "map": [
+    "share:rw",
+    "backup:rw"
+  ],
+  "startup": "before",
+  "boot": "auto",
+  "ports": {},
+  "options": {
+    "general": {
+      "update_interval": 10
+    },
+    "mqtt": {
+      "host": "host",
+      "port": 1883,
+      "default_prefix": "brno"
+    },
+    "sensors": [
+      {
+        "platform": "HTU21",
+        "name": "HTU21",
+        "temperature_topic": "HTU21/temperature",
+        "humidity_topic": "HTU21/humidity",
+        "bus_number": 1,
+        "update_interval": 10,
+        "pigpio_host": "addon_243ffc37_pigpio",
+        "pigpio_port": 8888
+      }
+    ]
+  },
+  "schema": false
+}

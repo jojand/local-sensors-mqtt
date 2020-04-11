@@ -14,7 +14,9 @@
       "name": "HTU21",
       "platform": "HTU21",
       "temperature_topic": "HTU21/temperature",
-      "update_interval": 10
+      "update_interval": 10,
+      "pigpio_host": "addon_243ffc37_pigpio",
+      "pigpio_port": 8888
     },
     {
       "abs_pressure_topic": "Bmp180/abs_pressure",

@@ -3,10 +3,11 @@ import logging
 
 class SensorBase:
 
-    def __init__(self, platform):
+    def __init__(self, platform, config=None):
+        self._config = config
         self._platform = platform
 
-    def init(self):
+    def init(self, config=None):
         raise NotImplementedError()
 
     def read_values(self):
