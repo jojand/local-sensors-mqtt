@@ -1,0 +1,29 @@
+{
+  "general": {
+    "update_interval": 10
+  },
+  "mqtt": {
+    "default_prefix": "brno",
+    "host": "localhost",
+    "port": 1883
+  },
+  "sensors": [
+    {
+      "bus_number": 1,
+      "humidity_topic": "HTU21/humidity",
+      "name": "HTU21",
+      "platform": "HTU21",
+      "temperature_topic": "HTU21/temperature",
+      "update_interval": 10
+    },
+    {
+      "abs_pressure_topic": "Bmp180/abs_pressure",
+      "altitude": 253,
+      "name": "Bmp180",
+      "platform": "Bmp180",
+      "rel_pressure_topic": "Bmp180/rel_pressure",
+      "temperature_topic": "Bmp180/temperature",
+      "update_interval": 10
+    }
+  ]
+}
